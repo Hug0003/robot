@@ -30,7 +30,59 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
     });
 });
 
-// 3D Spline model is now loaded via spline-viewer component - no JavaScript needed
+// Animation du robot 3D
+document.addEventListener('DOMContentLoaded', function() {
+    const splineViewer = document.querySelector('spline-viewer');
+    
+    if (splineViewer) {
+        // Attendre que le modèle soit chargé
+        splineViewer.addEventListener('load', function() {
+            // Délai pour laisser l'animation d'entrée se terminer
+            setTimeout(() => {
+                splineViewer.classList.add('loaded');
+            }, 2000);
+        });
+        
+        // Animation d'entrée avec effet de particules
+        setTimeout(() => {
+            createParticleEffect();
+        }, 500);
+    }
+});
+
+// Effet de particules pour l'arrivée du robot
+function createParticleEffect() {
+    const container = document.querySelector('.spline-container');
+    const particles = [];
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #e99b63, #ff6b6b);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            animation: particleFloat ${2 + Math.random() * 2}s ease-out forwards;
+        `;
+        
+        // Position aléatoire autour du robot
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        container.appendChild(particle);
+        particles.push(particle);
+        
+        // Supprimer la particule après l'animation
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, 4000);
+    }
+}
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
