@@ -1,0 +1,43 @@
+{
+  "deployment": {
+    "app_name": "portfolio3d",
+    "web_directory": "/var/www/portfolio3d",
+    "nginx_config": "/etc/nginx/sites-available/portfolio3d",
+    "nginx_enabled": "/etc/nginx/sites-enabled/portfolio3d"
+  },
+  "build": {
+    "output_dir": "dist",
+    "assets_dir": "assets",
+    "sourcemap": false,
+    "minify": true
+  },
+  "server": {
+    "development_port": 3000,
+    "preview_port": 4173,
+    "production_port": 80
+  },
+  "optimization": {
+    "chunks": {
+      "vendor": ["react", "react-dom"],
+      "spline": ["@splinetool/react-spline"],
+      "utils": ["aos", "boxicons"]
+    },
+    "compression": {
+      "gzip": true,
+      "level": 6,
+      "min_length": 1024
+    }
+  },
+  "security": {
+    "headers": {
+      "X-Frame-Options": "SAMEORIGIN",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "no-referrer-when-downgrade"
+    }
+  },
+  "cache": {
+    "static_assets": "1y",
+    "html": "no-cache"
+  }
+}
