@@ -28,11 +28,6 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
-      // Règles personnalisées
-      'no-unused-vars': 'warn',
-      'no-console': 'warn',
-      'prefer-const': 'error',
-      'no-var': 'error',
     },
   },
 ]
