@@ -12,6 +12,9 @@ function toggleMobileMenu() {
     mobileMenu.classList.toggle('show');
 }
 
+// Pas de onclick dans le HTML : la CSP n'autorise aucun script inline.
+document.querySelector('.mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
 // Close mobile menu when clicking outside
 document.addEventListener('click', function(event) {
     const mobileMenu = document.getElementById('mobileMenu');
